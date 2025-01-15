@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Selenium Script Results</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      h1 {
+        color: #333;
+      }
+      #results {
+        margin-top: 20px;
+        display: none;
+      }
+      pre {
+        background-color: #f4f4f4;
+        padding: 10px;
+        border-radius: 5px;
+        overflow-x: auto;
+      }
+      #loading {
+        display: none;
+        margin-top: 20px;
+      }
+      #run-again {
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Click here to run the script</h1>
+    <a href="#" id="run-script">Run Script</a>
+
+    <div id="loading">Loading...</div>
+
+    <div id="results">
+      <h2>
+        These are the most happening topics as of <span id="datetime"></span>
+      </h2>
+      <p id="trends"></p>
+      <p id="ip-address"></p>
+
+      <h3>Here’s a JSON extract of this record from the MongoDB:</h3>
+      <pre id="json-output"></pre>
+
+      <button id="run-again">Click here to run the query again</button>
+    </div>
+
+    <script>
+      // Function to run the script
+      async function runScript() {
+        document.getElementById("loading").style.display = "block";
+        document.getElementById("results").style.display = "none";
+
+        try {
+          const response = await fetch("/run-script");
+          const data = await response.json();
+
+          // Check if there's an error in the data
+          if (data.error) {
+            alert("Error fetching data: " + data.error);
+            return;
+          }
+
+          // Destructure the data
+          const { trends, datetime, ipAddress, _id, proxyIPAddress, ...rest } =
+            data.data;
+          const formattedTime = new Date(datetime).toLocaleString();
+
+          // Display the formatted time, trends, and IP address
+          document.getElementById("datetime").textContent = formattedTime;
+          document.getElementById("trends").innerHTML = Object.entries(trends)
+            .map(([key, trend]) => `${parseInt(key) + 1}: "${trend}"`)
+            .join("<br />");
+
+          document.getElementById(
+            "ip-address"
+          ).textContent = `The IP address used for this query was ${ipAddress}`;
+
+          // Format and display the JSON output
+          const { __v, runId, ...filteredData } = {
+            ...rest,
+            _id: _id.toString(),
+          };
+          const formattedData = {
+            ...filteredData,
+            trends: trends,
+            ipAddress: ipAddress,
+            datetime: formattedTime,
+          };
+
+          document.getElementById("json-output").textContent = JSON.stringify(
+            formattedData,
+            null,
+            2
+          );
+
+          // Hide loading and show results
+          document.getElementById("loading").style.display = "none";
+          document.getElementById("results").style.display = "block";
+        } catch (error) {
+          alert("Failed to fetch trends data.");
+          console.error("Error:", error);
+        }
+      }
+
+      // Event listener for running the script
+      document
+        .getElementById("run-script")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          runScript();
+        });
+
+      // Event listener for running the query again
+      document
+        .getElementById("run-again")
+        .addEventListener("click", function () {
+          runScript();
+        });
+    </script>
+  </body>
+</html>
