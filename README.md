@@ -1,68 +1,77 @@
-Selenium Script Results Web App
-This web app allows users to run a script that fetches trending topics, the timestamp of the data, and the IP address used for the query. The data is presented in a formatted view, including a JSON extract from a MongoDB database. The user can run the script and view the results or run it again to fetch updated data.
+# Selenium Script Results Web App
 
-Features
-Fetch trending topics in real-time.
-Display the timestamp of when the data was fetched.
-Show the IP address used for the query.
-Display a formatted JSON extract from MongoDB.
-Re-run the query by clicking the "Run again" button.
-Simple and responsive design.
-Prerequisites
-To run this project, you need:
+Welcome to the **Selenium Script Results Web App**! This web application allows users to easily run a script that fetches real-time trending topics, the timestamp of the data, and the IP address used for the query. You can view the results in a neat and formatted layout, including a JSON extract of the data from a MongoDB database.
 
-Node.js (with npm or yarn)
-MongoDB (if you plan to connect to a local MongoDB database)
-Express.js (for backend API, used in the /run-script endpoint)
-Selenium (for web scraping or automation tasks)
+### Key Features:
 
-Installation
-1. Clone the Repository
+- **Real-time Trending Topics**: Fetch up-to-date trending topics from a specified source.
+- **Timestamp of Data**: See exactly when the data was fetched, down to the second.
+- **IP Address Details**: View the IP address used for the query and the proxy IP address.
+- **MongoDB JSON Extract**: View a cleanly formatted JSON extract from MongoDB with all the relevant data.
+- **Re-run Queries**: Easily re-run the script with the click of a button to get updated data.
+- **Responsive & User-Friendly Design**: Simple and clean UI, accessible on any device.
+
+---
+
+## Prerequisites
+
+To run this project locally, you'll need the following:
+
+- **Node.js** (with npm or yarn)
+- **MongoDB** (if you want to connect to a local MongoDB database)
+- **Express.js** (Backend API, used for the `/run-script` endpoint)
+- **Selenium** (For web scraping and automation tasks)
+
+---
+
+## Installation Guide
+
+### 1. Clone the Repository
+
+Start by cloning this repository to your local machine:
+
+```bash
 git clone https://github.com/yourusername/selenium-script-results-web-app.git
 cd selenium-script-results-web-app
-
-2. Install Dependencies
-Install backend dependencies using npm or yarn.
+ 2. Install Dependencies
+Next, install all the required dependencies:
 npm install
 # or
 yarn install
+ 3. Set Up the Backend API
+The backend needs to expose an endpoint (/run-script) that triggers the Selenium script and returns the results as a JSON object.
 
-3. Set Up Backend API
-The backend needs to expose an endpoint (/run-script) that will run the Selenium script and return the data as a JSON object. You should modify this endpoint to fit your use case (e.g., interacting with a database or scraping a website).
+Modify this endpoint to suit your use case (e.g., interacting with your own database or scraping specific websites).
+Make sure MongoDB is running locally (or connect to a remote MongoDB instance).
 
-4. Run the Application
-To start the backend server, use:
+4. Start the Application
+Now you’re ready to start the backend server:
+npm start
+# or
+yarn start
+ Backend Endpoint: /run-script
+The /run-script endpoint is responsible for executing the Selenium script and returning the results as a structured JSON object.
+
+ JSON Fields:
+trends: An object containing the trending topics (indexed).
+datetime: The timestamp when the data was fetched.
+ipAddress: The IP address used for the query.
+_id: The MongoDB document ID.
+proxyIPAddress: The proxy IP address (if used).
+ Running the Project
+1. Start the Backend
+Run the server using:
+npm start
+# or
+yarn start
 npm start
 # or
 yarn start
 
-Backend Endpoint
-/run-script
-This endpoint is responsible for running the script (using Selenium or any other logic) and returning a JSON object with the results.
-
-Response Example:
-{
-  "data": {
-    "trends": {
-      "0": "Trend 1",
-      "1": "Trend 2",
-      "2": "Trend 3"
-    },
-    "datetime": "2025-01-15T12:00:00Z",
-    "ipAddress": "192.168.1.1",
-    "_id": "12345",
-    "proxyIPAddress": "192.168.1.2"
-  }
-}
-
-JSON Fields:
-trends: An object containing the trending topics.
-datetime: The timestamp when the data was fetched.
-ipAddress: The IP address used for the query.
-_id: The MongoDB document ID.
-proxyIPAddress: The proxy IP address (if any).
-
-Running the Project
-Start the Backend: Run the server with npm start or yarn start.
-Access the Frontend: Open your browser and go to http://localhost:3000. You will see the "Click here to run the script" link.
-Fetch Data: Click the link to fetch the data and see the results. You can also click "Run again" to re-fetch the data
+Built With:
+Node.js: Server-side JavaScript for building the backend.
+Express.js: Backend API for handling requests.
+Selenium: For web scraping/automation tasks.
+MongoDB: Database to store and retrieve the results.
+HTML/CSS/JavaScript: For building the frontend.
+```
