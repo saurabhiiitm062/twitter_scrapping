@@ -31,7 +31,7 @@ To run this project locally, you'll need the following:
 Start by cloning this repository to your local machine:
 
 ```bash
-git clone https://github.com/yourusername/selenium-script-results-web-app.git
+git clone https://github.com/saurabhiiitm062/twitter_scrapping.git
 cd selenium-script-results-web-app
  2. Install Dependencies
 Next, install all the required dependencies:
