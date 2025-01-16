@@ -75,9 +75,6 @@ Selenium: For web scraping/automation tasks.
 MongoDB: Database to store and retrieve the results.
 HTML/CSS/JavaScript: For building the frontend.
 
-
-```
-
 use this env
 X_USERNAME=twitter username
 X_PASSWORD=twitter password
@@ -86,6 +83,7 @@ PROXY_PASSWORD=proxymesh password
 PROXY_PORT= proxymesh port
 PROXY_HOST=proxymesh host
 MONGO_URI=mongo db uri
+```
 
 output:
 ![output image ](./outputs//output1.jpeg)
