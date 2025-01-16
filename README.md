@@ -76,7 +76,7 @@ MongoDB: Database to store and retrieve the results.
 HTML/CSS/JavaScript: For building the frontend.
 
 folder structure :
-![folder structure ](./outputs//folder%20structure.jpeg)
+![folder structure ](./outputs//structure.jpeg)
 
 ```
 
