@@ -75,3 +75,6 @@ Selenium: For web scraping/automation tasks.
 MongoDB: Database to store and retrieve the results.
 HTML/CSS/JavaScript: For building the frontend.
 ```
+
+output:
+![output image ](./outputs//output1.jpeg)
