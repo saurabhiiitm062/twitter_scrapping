@@ -74,6 +74,10 @@ Express.js: Backend API for handling requests.
 Selenium: For web scraping/automation tasks.
 MongoDB: Database to store and retrieve the results.
 HTML/CSS/JavaScript: For building the frontend.
+
+folder structure :
+![folder structure ](./outputs//folder%20structure.jpeg)
+
 ```
 
 output:
